@@ -40,6 +40,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/users/save-admin-user").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/activities").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/activities/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/activities").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/activities/{id}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/activities/{id}").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

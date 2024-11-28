@@ -16,7 +16,7 @@ public class Activity {
     private Date updatedAt;
     private Date date;
     private String hour;
-    private String lugar;
+    private String place;
     private int available_slots;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -78,12 +78,12 @@ public class Activity {
         this.hour = hour;
     }
 
-    public String getLugar() {
-        return lugar;
+    public String getPlace() {
+        return place;
     }
 
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public int getAvailable_slots() {
