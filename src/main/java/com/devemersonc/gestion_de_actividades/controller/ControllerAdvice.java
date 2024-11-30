@@ -1,6 +1,7 @@
 package com.devemersonc.gestion_de_actividades.controller;
 
 import com.devemersonc.gestion_de_actividades.dto.ErrorMessage;
+import com.devemersonc.gestion_de_actividades.exception.InsufficientQuotasException;
 import com.devemersonc.gestion_de_actividades.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
@@ -39,6 +40,13 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
         errors.put("path", request.getRequestURI());
 
         return new ResponseEntity<>(errors, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(InsufficientQuotasException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorMessage> handleInsufficientQuotasException(InsufficientQuotasException exception) {
+        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST.value() + " " + HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
     }
 
     @Override

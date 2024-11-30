@@ -37,6 +37,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Activity> activities;
 
+    @OneToMany(mappedBy = "user")
+    private List<Inscription> inscriptions;
+
     public Long getId() {
         return id;
     }
@@ -142,6 +145,22 @@ public class User implements UserDetails {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public List<Inscription> getInscriptions() {
+        return inscriptions;
+    }
+
+    public void setInscriptions(List<Inscription> inscriptions) {
+        this.inscriptions = inscriptions;
     }
 
     @PrePersist

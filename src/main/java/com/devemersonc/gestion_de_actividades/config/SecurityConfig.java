@@ -45,6 +45,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/activities").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/activities/{id}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/api/activities/{id}").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/inscriptions").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/inscriptions/{id}").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/inscriptions/{id}").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/inscriptions/{id}").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

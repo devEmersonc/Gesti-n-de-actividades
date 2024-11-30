@@ -3,6 +3,7 @@ package com.devemersonc.gestion_de_actividades.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "activities")
@@ -21,6 +22,9 @@ public class Activity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "activity")
+    private List<Inscription> inscriptions;
 
     public Long getId() {
         return id;
