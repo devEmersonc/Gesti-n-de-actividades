@@ -1,5 +1,6 @@
 package com.devemersonc.gestion_de_actividades.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ public class Activity {
     private User user;
 
     @OneToMany(mappedBy = "activity")
+    @JsonManagedReference
     private List<Inscription> inscriptions;
 
     public Long getId() {
@@ -80,6 +82,14 @@ public class Activity {
 
     public void setHour(String hour) {
         this.hour = hour;
+    }
+
+    public List<Inscription> getInscriptions() {
+        return inscriptions;
+    }
+
+    public void setInscriptions(List<Inscription> inscriptions) {
+        this.inscriptions = inscriptions;
     }
 
     public String getPlace() {

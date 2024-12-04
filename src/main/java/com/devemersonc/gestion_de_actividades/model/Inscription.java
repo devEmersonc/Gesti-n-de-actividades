@@ -1,6 +1,8 @@
 package com.devemersonc.gestion_de_actividades.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -23,6 +25,7 @@ public class Inscription {
 
     @ManyToOne
     @JoinColumn(name = "activity_id")
+    @JsonBackReference
     private Activity activity;
 
     public Long getId() {

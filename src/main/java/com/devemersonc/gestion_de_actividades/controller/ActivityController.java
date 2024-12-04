@@ -1,6 +1,7 @@
 package com.devemersonc.gestion_de_actividades.controller;
 
 import com.devemersonc.gestion_de_actividades.dto.ActivityDTO;
+import com.devemersonc.gestion_de_actividades.dto.ActivityDtoWithInscription;
 import com.devemersonc.gestion_de_actividades.dto.RegisterActivityDTO;
 import com.devemersonc.gestion_de_actividades.service.ActivityService;
 import jakarta.validation.Valid;
@@ -29,6 +30,18 @@ public class ActivityController {
     public ResponseEntity<ActivityDTO> getActivity(@PathVariable Long id) {
         ActivityDTO activityDTO = activityService.getActivity(id);
         return ResponseEntity.ok(activityDTO);
+    }
+
+    @GetMapping("/{activityId}/users")
+    public ResponseEntity<ActivityDtoWithInscription> getActivityWithUsers(@PathVariable Long activityId) {
+        ActivityDtoWithInscription activityDTO = activityService.getActivityWithUsers(activityId);
+        return ResponseEntity.ok(activityDTO);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<ActivityDtoWithInscription>> getAllActivitiesWithUsers() {
+        List<ActivityDtoWithInscription> activityDTOS = activityService.getAllActivitiesWithUsers();
+        return ResponseEntity.ok(activityDTOS);
     }
 
     @PostMapping
