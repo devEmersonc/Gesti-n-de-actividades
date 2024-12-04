@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/inscriptions")
@@ -41,5 +42,12 @@ public class InscriptionController {
     public ResponseEntity<String> deleteInscription(@PathVariable Long id) {
         inscriptionService.deleteInscription(id);
         return ResponseEntity.ok("Inscripción eliminada.");
+    }
+
+    @PutMapping("/attendance/{idInscription}")
+    public ResponseEntity<String> markAttendance(@PathVariable Long idInscription, @RequestBody Map<String, Object> request) {
+        boolean attendance = (boolean) request.get("attendance");
+        inscriptionService.updateAttendance(idInscription, attendance);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Asistencia actualizada correctamente.");
     }
 }

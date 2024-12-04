@@ -70,6 +70,14 @@ public class InscriptionServiceImpl implements InscriptionService {
         inscriptionRepository.deleteById(inscription.getId());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Override
+    public void updateAttendance(Long idInscription, Boolean attendance) {
+        Inscription inscription = inscriptionRepository.findById(idInscription).orElseThrow(() -> new ResourceNotFoundException("La inscripción ingresada no existe."));
+        inscription.setAttendance(attendance);
+        inscriptionRepository.save(inscription);
+    }
+
     @Override
     public InscriptionDTO convertEntityToDto(Inscription inscription) {
         InscriptionDTO inscriptionDTO = new InscriptionDTO();

@@ -124,7 +124,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public List<InscriptionUserDTO> convertInscriptionToDto(List<Inscription> inscriptions) {
         return inscriptions.stream()
-                .map(ins -> new InscriptionUserDTO(ins.getId(), ins.getUser().getFirstname(), ins.getUser().getLastname()))
+                .map(ins -> new InscriptionUserDTO(ins.getId(), ins.getUser().getFirstname(), ins.getUser().getLastname(), ins.getAttendance()))
                 .collect(Collectors.toList());
     }
 

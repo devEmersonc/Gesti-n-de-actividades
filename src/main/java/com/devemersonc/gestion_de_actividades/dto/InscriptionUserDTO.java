@@ -4,11 +4,13 @@ public class InscriptionUserDTO {
     private Long id;
     private String firstname;
     private String lastname;
+    private Boolean attendance;
 
-    public InscriptionUserDTO (Long id, String firstname, String lastname) {
+    public InscriptionUserDTO (Long id, String firstname, String lastname, Boolean attendance) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.attendance = attendance;
     }
 
     public Long getId() {
@@ -33,5 +35,13 @@ public class InscriptionUserDTO {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Boolean getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Boolean attendance) {
+        this.attendance = attendance;
     }
 }

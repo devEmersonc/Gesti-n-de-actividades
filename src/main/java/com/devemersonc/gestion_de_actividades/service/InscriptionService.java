@@ -11,5 +11,6 @@ public interface InscriptionService {
     InscriptionDTO getInscription(Long id);
     void saveInscription(Long id, RegisterInscriptionDTO registerInscriptionDTO);
     void deleteInscription(Long id);
+    void updateAttendance(Long idInscription, Boolean attendance);
     InscriptionDTO convertEntityToDto(Inscription inscription);
 }
