@@ -51,7 +51,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/inscriptions/{id}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/inscriptions/{id}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/inscriptions/{id}").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/api/inscriptions/attendance/{idInscription}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/inscriptions/attendance/{idInscription}").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

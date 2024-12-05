@@ -1,5 +1,7 @@
 package com.devemersonc.gestion_de_actividades.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -22,10 +24,10 @@ public class Activity {
     private int available_slots;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 
     @OneToMany(mappedBy = "activity")
-    @JsonManagedReference
     private List<Inscription> inscriptions;
 
     public Long getId() {

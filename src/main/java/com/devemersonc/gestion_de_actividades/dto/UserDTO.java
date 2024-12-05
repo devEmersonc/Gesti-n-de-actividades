@@ -7,6 +7,16 @@ public class UserDTO {
     private String firstname;
     private String lastname;
 
+    public UserDTO(){};
+
+    public UserDTO(String username, String email, int age, String firstname, String lastname){
+        this.username = username;
+        this.email = email;
+        this.age = age;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    };
+
     public String getUsername() {
         return username;
     }

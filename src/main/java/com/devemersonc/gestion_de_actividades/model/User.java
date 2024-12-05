@@ -1,5 +1,8 @@
 package com.devemersonc.gestion_de_actividades.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +29,8 @@ public class User implements UserDetails {
     @Column(updatable = false)
     private Date createdAt;
     private Date updatedAt;
+
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "users_roles",
@@ -35,10 +40,12 @@ public class User implements UserDetails {
     private List<Role> roles;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private List<Activity> activities;
 
     @OneToMany(mappedBy = "user")
     private List<Inscription> inscriptions;
+
 
     public Long getId() {
         return id;

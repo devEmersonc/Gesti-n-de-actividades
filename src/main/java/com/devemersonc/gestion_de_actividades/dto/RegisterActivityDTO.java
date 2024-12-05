@@ -26,7 +26,6 @@ public class RegisterActivityDTO {
     @Min(value = 0, message = "El mínimo de cupos es 0.")
     @Max(value = 200, message = "El máximo de cupos es 200.")
     private int available_slots;
-    private User user;
 
     public String getName() {
         return name;
@@ -74,14 +73,6 @@ public class RegisterActivityDTO {
 
     public void setAvailable_slots(int available_slots) {
         this.available_slots = available_slots;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
 

@@ -1,5 +1,6 @@
 package com.devemersonc.gestion_de_actividades.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 

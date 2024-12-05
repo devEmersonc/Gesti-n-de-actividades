@@ -9,8 +9,7 @@ public class InscriptionDTO {
     private Long id;
     private Date inscription_date;
     private Boolean attendance;
-    private User user;
-    private Activity activity;
+    private UserDTO user;
 
     public Long getId() {
         return id;
@@ -36,19 +35,11 @@ public class InscriptionDTO {
         this.attendance = attendance;
     }
 
-    public User getUser() {
+    public UserDTO getUserDto() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUserDto(UserDTO user) {
         this.user = user;
-    }
-
-    public Activity getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Activity activity) {
-        this.activity = activity;
     }
 }

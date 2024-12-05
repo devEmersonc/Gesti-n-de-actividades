@@ -2,6 +2,7 @@ package com.devemersonc.gestion_de_actividades.service.serviceImpl.inscriptionSe
 
 import com.devemersonc.gestion_de_actividades.dto.InscriptionDTO;
 import com.devemersonc.gestion_de_actividades.dto.RegisterInscriptionDTO;
+import com.devemersonc.gestion_de_actividades.dto.UserDTO;
 import com.devemersonc.gestion_de_actividades.exception.InsufficientQuotasException;
 import com.devemersonc.gestion_de_actividades.exception.ResourceNotFoundException;
 import com.devemersonc.gestion_de_actividades.model.Activity;
@@ -12,6 +13,7 @@ import com.devemersonc.gestion_de_actividades.repository.InscriptionRepository;
 import com.devemersonc.gestion_de_actividades.service.ActivityService;
 import com.devemersonc.gestion_de_actividades.service.InscriptionService;
 import com.devemersonc.gestion_de_actividades.service.SecurityService;
+import com.devemersonc.gestion_de_actividades.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +24,17 @@ import java.util.stream.Collectors;
 public class InscriptionServiceImpl implements InscriptionService {
     private final InscriptionRepository inscriptionRepository;
     private final ActivityRepository activityRepository;
+    private final UserService userService;
+
     private final SecurityService securityService;
     private final ActivityService activityService;
 
-    public InscriptionServiceImpl(InscriptionRepository inscriptionRepository, ActivityRepository activityRepository, SecurityService securityService, ActivityService activityService) {
+    public InscriptionServiceImpl(InscriptionRepository inscriptionRepository, ActivityRepository activityRepository, SecurityService securityService, ActivityService activityService, UserService userService) {
         this.inscriptionRepository = inscriptionRepository;
         this.activityRepository = activityRepository;
         this.securityService = securityService;
         this.activityService = activityService;
+        this.userService = userService;
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -81,10 +86,16 @@ public class InscriptionServiceImpl implements InscriptionService {
     @Override
     public InscriptionDTO convertEntityToDto(Inscription inscription) {
         InscriptionDTO inscriptionDTO = new InscriptionDTO();
+        UserDTO userDTO = new UserDTO(
+                inscription.getUser().getUsername(),
+                inscription.getUser().getEmail(),
+                inscription.getUser().getAge(),
+                inscription.getUser().getFirstname(),
+                inscription.getUser().getLastname()
+        );
         inscriptionDTO.setId(inscription.getId());
         inscriptionDTO.setInscription_date(inscription.getInscription_date());
-        inscriptionDTO.setUser(inscription.getUser());
-        inscriptionDTO.setActivity(inscription.getActivity());
+        inscriptionDTO.setUserDto(userDTO);
         inscriptionDTO.setAttendance(inscription.getAttendance());
         return inscriptionDTO;
     }
