@@ -33,8 +33,8 @@ public class InscriptionController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<String> saveInscription(@Valid @RequestBody RegisterInscriptionDTO registerInscriptionDTO, @PathVariable Long id) {
-        inscriptionService.saveInscription(id, registerInscriptionDTO);
+    public ResponseEntity<String> saveInscription(@PathVariable Long id) {
+        inscriptionService.saveInscription(id);
         return ResponseEntity.status(HttpStatus.CREATED).body("Inscripción exitosa!");
     }
 

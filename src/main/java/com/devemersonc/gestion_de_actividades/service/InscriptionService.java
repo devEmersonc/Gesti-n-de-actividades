@@ -9,7 +9,7 @@ import java.util.List;
 public interface InscriptionService {
     List<InscriptionDTO> getInscriptions();
     InscriptionDTO getInscription(Long id);
-    void saveInscription(Long id, RegisterInscriptionDTO registerInscriptionDTO);
+    void saveInscription(Long id);
     void deleteInscription(Long id);
     void updateAttendance(Long idInscription, Boolean attendance);
     InscriptionDTO convertEntityToDto(Inscription inscription);

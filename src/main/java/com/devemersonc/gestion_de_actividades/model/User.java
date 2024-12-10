@@ -29,8 +29,6 @@ public class User implements UserDetails {
     @Column(updatable = false)
     private Date createdAt;
     private Date updatedAt;
-
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "users_roles",
@@ -43,7 +41,7 @@ public class User implements UserDetails {
     @JsonBackReference
     private List<Activity> activities;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Inscription> inscriptions;
 
 

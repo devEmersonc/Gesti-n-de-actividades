@@ -30,7 +30,6 @@ public class RegisterUserDTO {
     @NotNull(message = "El apellido no puede ser null.")
     @NotBlank(message = "El apellido es obligatorio.")
     private String lastname;
-    private List<Role> roles;
 
     public String getUsername() {
         return username;
@@ -78,13 +77,5 @@ public class RegisterUserDTO {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 }

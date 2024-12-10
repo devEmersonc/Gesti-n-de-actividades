@@ -54,7 +54,7 @@ public class InscriptionServiceImpl implements InscriptionService {
     }
 
     @Override
-    public void saveInscription(Long id, RegisterInscriptionDTO registerInscriptionDTO) {
+    public void saveInscription(Long id) {
         Inscription inscription = new Inscription();
         Activity activity = activityRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("La actividad ingresada no existe."));
         User user = securityService.getAuthenticatedUser();
